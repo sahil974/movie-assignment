@@ -7,7 +7,7 @@ const Movie = () => {
     const navigate = useNavigate()
 
     const handleSubmit = () => {
-        navigate("");
+        navigate("/");
     }
 
     const fetchMovie = async (id) => {
@@ -15,7 +15,7 @@ const Movie = () => {
             const data = await fetch(`https://www.omdbapi.com/?apikey=8fc6c84a&i=${id}`)
 
             const response = await data.json()
-            console.log(response);
+            // console.log(response);
             setMovie(response)
 
         } catch (error) {
@@ -42,15 +42,10 @@ const Movie = () => {
                     </div>
 
                     <div>
-
                         <p>Title : {movie.Title}</p>
                         <p>Writer : {movie.Writer}</p>
                         <p>IMDB Rating : {movie.imdbRating}</p>
                         <p>Actors : {movie.Actors}</p>
-
-
-
-
                     </div>
 
                 </div>

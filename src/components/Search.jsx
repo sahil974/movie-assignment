@@ -13,7 +13,7 @@ const Search = () => {
             const data = await fetch(`https://www.omdbapi.com/?apikey=8fc6c84a&s=${query}&page=${page}`)
 
             const response = await data.json()
-            console.log(response);
+            // console.log(response);
             // console.log(response.Search);
             setMovies(response.Search)
         } catch (error) {
@@ -37,16 +37,18 @@ const Search = () => {
         <div>
             <h1 className='text-4xl'>Movie search</h1>
             <div className='flex gap-2 m-5'>
-                <input className='p-4' type="text" name='query' value={query} onChange={(e) => { setQuery(e.target.value) }} />
+                <input className='p-4 w-[1000px]' type="text" name='query' value={query} onChange={(e) => { setQuery(e.target.value) }} />
                 <button onClick={handleSearch}>Search</button>
             </div>
 
             <div>
-                <ul>
+                <ul className='grid grid-cols-4 gap-4 '>
                     {movies && movies.map((movie) => (
-                        <li onClick={() => { handleMovie(movie.imdbID) }} className='p-5' key={movie.imdbID}>
+                        <li onClick={() => { handleMovie(movie.imdbID) }} className='p-5 cursor-pointer border border-gray-200 rounded flex flex-col justify-center items-center' key={movie.imdbID}>
 
+                            <img src={movie.Poster} alt="img" height={300} width={200} />
                             <p>Title : {movie.Title} Year : {movie.Year}</p>
+
 
                         </li>
                     ))}
